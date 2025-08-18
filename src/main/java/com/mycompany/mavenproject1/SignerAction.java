@@ -23,7 +23,7 @@ import java.security.spec.InvalidKeySpecException;
  * @author vicent
  */
 class SignerAction {
-    public void executeSigningProcess(File selectedFile) throws IOException, CertificateException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, InvalidAlgorithmParameterException, KeylessSignerException {       
+    public Path executeSigningProcess(File selectedFile) throws IOException, CertificateException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, InvalidAlgorithmParameterException, KeylessSignerException {       
         
         // Signing actions
         Path artifact = Paths.get(selectedFile.getAbsolutePath());
@@ -36,10 +36,12 @@ class SignerAction {
         String bundleJson = result.toJson();
         
         // Save the bundle to a file
-        Path sigFile = Paths.get(artifact.toString() + ".sigstore.json");
-        Files.write(sigFile, bundleJson.getBytes());
+        Path sigBundleFile = Paths.get(artifact.toString() + ".sigstore.json");
+        Files.write(sigBundleFile, bundleJson.getBytes());
         
         // Log
-        System.out.println("Signature bundle saved to: " + sigFile);
+        System.out.println("Signature bundle saved to: " + sigBundleFile);
+        
+        return sigBundleFile;
     }
 }

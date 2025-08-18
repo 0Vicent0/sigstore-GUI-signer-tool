@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -87,11 +88,11 @@ public class Mavenproject1 {
 
                     // Signing process
                     SignerAction signeraction = new SignerAction();
-                    signeraction.executeSigningProcess(selectedFile);
+                    Path sigBundleFile = signeraction.executeSigningProcess(selectedFile);
 
                     // Inform the user
                     JOptionPane.showMessageDialog(frame,
-                            "You signed: " + selectedFile.getAbsolutePath(),
+                            "You signed: " + selectedFile.getAbsolutePath() + " Bundle has been saved: " + sigBundleFile,
                             "Artifact Signed",
                             JOptionPane.INFORMATION_MESSAGE);
 
