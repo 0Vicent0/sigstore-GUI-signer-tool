@@ -1,0 +1,45 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.mavenproject1;
+
+import dev.sigstore.KeylessSigner;
+import dev.sigstore.KeylessSignerException;
+import dev.sigstore.bundle.Bundle;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.spec.InvalidKeySpecException;
+
+/**
+ *
+ * @author vicent
+ */
+class SignerAction {
+    public void executeSigningProcess(File selectedFile) throws IOException, CertificateException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, InvalidAlgorithmParameterException, KeylessSignerException {       
+        
+        // Signing actions
+        Path artifact = Paths.get(selectedFile.getAbsolutePath());
+        
+        // sign using the sigstore public instance
+        var signer = KeylessSigner.builder().sigstorePublicDefaults().build();
+        Bundle result = signer.signFile(artifact);
+        
+        // sigstore bundle format (serialized as <artifact>.sigstore.json)
+        String bundleJson = result.toJson();
+        
+        // Save the bundle to a file
+        Path sigFile = Paths.get(artifact.toString() + ".sigstore.json");
+        Files.write(sigFile, bundleJson.getBytes());
+        
+        // Log
+        System.out.println("Signature bundle saved to: " + sigFile);
+    }
+}
