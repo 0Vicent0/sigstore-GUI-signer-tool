@@ -10,7 +10,7 @@ To build from source use maven and the pom.xml provided in Netbeans or any other
 ## Binary distribution
 A jar file is provided into the releases section so to run the program simply download the jaf file and run it on the terminal with:
 ```
-jara -jar <downloaded.jar>
+java -jar <downloaded.jar>
 ```
 Or make it executable and double-click on it.
 
