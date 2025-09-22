@@ -50,7 +50,7 @@ public class Mavenproject1 {
         BufferedImage originalImage = null;
 
         try {
-            originalImage = ImageIO.read(new File("/home/vicent/icon.png"));
+            originalImage = ImageIO.read(new File("icon.png"));
         } catch (IOException e) {
             System.exit(1);
         }
