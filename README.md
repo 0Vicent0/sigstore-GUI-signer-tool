@@ -18,3 +18,5 @@ In Linux you can just:
 ```
 sudo chmod 755 <downloaded.jaf>
 ```
+# Usage
+![image](gui-interface.png)
