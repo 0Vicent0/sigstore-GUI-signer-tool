@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.mavenproject1;
 
 import javax.swing.JFrame;
@@ -10,10 +6,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author vicent
- */
 public class MenuDisplayer {
 
     public void drawMenu(JFrame frame) {
@@ -42,13 +34,9 @@ public class MenuDisplayer {
     GUI interface for Sigstore.
     """;
     
-        // --- Add Menu Bar ---
+        // Menu bar
         JMenuBar menuBar = new JMenuBar();
-
-        // Create "Help" menu (or "About" menu, as you prefer)
-        JMenu helpMenu = new JMenu("Help");
-
-        // Add "License" item
+        JMenu helpMenu = new JMenu("Menu");
         JMenuItem licenseItem = new JMenuItem("License");
 
         licenseItem.addActionListener(e -> {
@@ -60,7 +48,6 @@ public class MenuDisplayer {
         }
         );
         
-        // Add "License" item
         JMenuItem aboutItem = new JMenuItem("About");
 
         aboutItem.addActionListener(e -> {
@@ -72,8 +59,6 @@ public class MenuDisplayer {
         }
         );
         
-        
-
         helpMenu.add(licenseItem);
         helpMenu.add(aboutItem);
         menuBar.add(helpMenu);

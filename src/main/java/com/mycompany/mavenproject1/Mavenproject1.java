@@ -1,28 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 package com.mycompany.mavenproject1;
 
 import dev.sigstore.KeylessSignerException;
 import dev.sigstore.bundle.BundleParseException;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.security.InvalidAlgorithmParameterException;
@@ -33,7 +22,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.net.ssl.HttpsURLConnection;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,16 +30,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.ParseException;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
@@ -62,11 +46,11 @@ import org.apache.http.util.EntityUtils;
 public class Mavenproject1 {
 
     public static void main(String[] args) throws KeylessSignerException, CertificateException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, InvalidAlgorithmParameterException, BundleParseException {
-// Load image
+        // Deco image
         BufferedImage originalImage = null;
 
         try {
-            originalImage = ImageIO.read(new File("/home/vicent/vict3r/VICT3R-logo_files/VICT3R-logo_files/png/VICT3R-squared-simple.png"));
+            originalImage = ImageIO.read(new File("/home/vicent/icon.png"));
         } catch (IOException e) {
             System.exit(1);
         }
@@ -92,14 +76,13 @@ public class Mavenproject1 {
         frame.setLayout(new BorderLayout());
         frame.add(label, BorderLayout.NORTH);
 
-        // File Selector Panel
         // Create the buttons
         JButton signButton = new JButton("Sign an artifact");
         JButton verifyButton = new JButton("Verify an artifact");
         JButton hashButton = new JButton("Hash an artifact");
         JButton checkHashButton = new JButton("Check hash in rekor ledger");
 
-        /////////// Hash button
+        //// Hash button
         hashButton.addActionListener((ActionEvent e) -> {
             JFileChooser fc = new JFileChooser();
             int returnVal = fc.showOpenDialog(frame);
@@ -132,7 +115,7 @@ public class Mavenproject1 {
             }
         });
 
-        /////////// Verify hash in rekor
+        //// Verify hash in rekor
         checkHashButton.addActionListener((var e) -> {
             try {
                 String userHash = JOptionPane.showInputDialog(frame,
@@ -161,7 +144,7 @@ public class Mavenproject1 {
             }
         });
 
-        /////////// Signing process
+        //// Signing process
         signButton.addActionListener((ActionEvent e) -> {
             JFileChooser fc = new JFileChooser();
             int returnVal = fc.showOpenDialog(frame);
@@ -191,7 +174,7 @@ public class Mavenproject1 {
             }
         });
 
-        /// Verify
+       //// Verify
        verifyButton.addActionListener(e -> {
             try {
                 JFileChooser fc = new JFileChooser();
@@ -237,17 +220,16 @@ public class Mavenproject1 {
                 Logger.getLogger(Mavenproject1.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        ////
 
-        // Add it before making frame visible
-        frame.setLayout(new FlowLayout()); // prevents full screen stretching
+        // Visual features config
+        frame.setLayout(new FlowLayout());
         frame.add(hashButton);
         frame.add(signButton);
         frame.add(verifyButton);
         frame.add(checkHashButton);
-
         frame.setSize(400, 300);
-        frame.setLocationRelativeTo(null); // center the frame on screen
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }

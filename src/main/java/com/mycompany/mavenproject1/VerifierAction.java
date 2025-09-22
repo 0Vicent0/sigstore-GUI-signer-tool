@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.mavenproject1;
 
 import dev.sigstore.KeylessVerificationException;
@@ -24,10 +20,6 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author vicent
- */
 public class VerifierAction {
 
     public void executeVerifying(File selectedFile, File selectedBundleFile, String email, String idProvider, JFrame frame) throws BundleParseException, IOException, InvalidAlgorithmParameterException, CertificateException, InvalidKeySpecException, NoSuchAlgorithmException, InvalidKeyException {
@@ -39,7 +31,6 @@ public class VerifierAction {
             accounts.put("Github", "https://github.com/login/oauth");
             accounts.put("Microsoft", "https://login.microsoftonline.com/common/v2.0");
        
-
             String issuerUrl = accounts.get(idProvider);
             
             if (issuerUrl == null) {
@@ -85,7 +76,6 @@ public class VerifierAction {
                         "Internal verification error: " + ex.getMessage(),
                         "Verification Error",
                         JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
             }
 
         } catch (BundleParseException | IOException ex) {
@@ -93,7 +83,6 @@ public class VerifierAction {
                     "Failed to read bundle or artifact: " + ex.getMessage(),
                     "Verification Error",
                     JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
         }
     }
 }
