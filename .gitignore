@@ -8,6 +8,8 @@ nbdist/
 
 # Maven
 target/
+dependency-reduced-pom.xml
+nbactions.xml
 
 # OS junk
 .DS_Store
