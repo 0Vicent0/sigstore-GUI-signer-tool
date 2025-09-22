@@ -1,0 +1,14 @@
+# NetBeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+.netbeans/
+
+# Maven
+target/
+
+# OS junk
+.DS_Store
+Thumbs.db
