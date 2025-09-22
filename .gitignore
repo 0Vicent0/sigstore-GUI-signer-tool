@@ -14,3 +14,9 @@ nbactions.xml
 # OS junk
 .DS_Store
 Thumbs.db
+
+dist.jar
+jshell.history
+sigstore-logo.png
+src/main/resources/
+
