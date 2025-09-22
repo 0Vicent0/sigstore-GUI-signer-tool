@@ -46,11 +46,14 @@ import org.apache.http.util.EntityUtils;
 public class Mavenproject1 {
 
     public static void main(String[] args) throws KeylessSignerException, CertificateException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, InvalidAlgorithmParameterException, BundleParseException {
+        System.out.println("App started...");
         // Deco image
         BufferedImage originalImage = null;
-
-        try {
-            originalImage = ImageIO.read(new File("icon.png"));
+        try (var is = Mavenproject1.class.getResourceAsStream("/icon.png")) {
+            if (is == null) {
+                throw new IOException("Resource not found: icon.png");
+            }
+            originalImage = ImageIO.read(is);
         } catch (IOException e) {
             System.exit(1);
         }
@@ -174,7 +177,7 @@ public class Mavenproject1 {
             }
         });
 
-       //// Verify
+        //// Verify
        verifyButton.addActionListener(e -> {
             try {
                 JFileChooser fc = new JFileChooser();
