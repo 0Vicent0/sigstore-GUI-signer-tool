@@ -1,5 +1,5 @@
 # Sigstore GUI signer tool
-This is a Java Swing frontend client to sigstore infraestructure
+This is a Java Swing frontend client to [sigstore](https://docs.sigstore.dev/) infraestructure.
 
 
 It should work on any x86_64 bit computer with Java runtime enviroment. It has been tested with Ubuntu 20.04 LTS with OpenJDK 21.
