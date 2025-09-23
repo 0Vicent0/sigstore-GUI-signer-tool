@@ -4,21 +4,22 @@ This is a Java Swing frontend client to sigstore infraestructure
 
 It should work on any x86_64 bit computer with Java runtime enviroment. It has been tested with Ubuntu 20.04 LTS with OpenJDK 21.
 
-## Build from source
+## INSTALLATION
+
+### Build from source
 To build from source use maven and the pom.xml provided in Netbeans or any other Java IDE.
 
-## Binary distribution
-A jar file is provided into the releases section so to run the program simply download the jaf file and run it on the terminal with:
-```
-java -jar <downloaded.jar>
-```
-Or make it executable and double-click on it.
+### Binary distribution
+A jar file is provided into the releases section so to run the program on Linux simply download the jar file and run it on the terminal:
 
-In Linux you can just:
 ```
-sudo chmod 755 <downloaded.jaf>
+sudo chmod 755 <downloaded.jar> # Making it executable
+java -jar <downloaded.jar> # Execute the file
 ```
-# Usage
+In Windows or Mac OX you should be able to double-click the downloaded jar file and run the program.
+
+
+### Usage
 The usage of the program should be almost trivial if you have at least read some of the sigstore official documentation.
 
 1. The first button "Hash an artifact" will execute a 256 bit hash on the selected file and paste it to the screen
