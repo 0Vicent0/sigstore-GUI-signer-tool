@@ -13,8 +13,8 @@ To build from source use maven and the pom.xml provided in Netbeans or any other
 A jar file is provided into the releases section so to run the program on Linux simply download the jar file and run it on the terminal:
 
 ```
-sudo chmod 755 <downloaded.jar> # Making it executable
-java -jar <downloaded.jar> # Execute the file
+shell> sudo chmod 755 <downloaded.jar> # Making it executable
+shell> java -jar <downloaded.jar> # Execute the file
 ```
 In Windows or Mac OX you should be able to double-click the downloaded jar file and run the program.
 
