@@ -121,30 +121,46 @@ public class Mavenproject1 {
         //// Verify hash in rekor
         checkHashButton.addActionListener((var e) -> {
             try {
-                String userHash = JOptionPane.showInputDialog(frame,
-                        "Enter SHA-256 hash (hex):",
-                        "Check Hash in Rekor",
-                        JOptionPane.QUESTION_MESSAGE);
-                if (userHash == null || userHash.trim().isEmpty()) {
-                    return;
+        String userHash = JOptionPane.showInputDialog(frame,
+                "Enter SHA-256 hash (hex):",
+                "Check Hash in Rekor",
+                JOptionPane.QUESTION_MESSAGE);
+        if (userHash == null || userHash.trim().isEmpty()) {
+            return;
+        }
+
+        String payload = "{\"hash\":\"sha256:" + userHash.trim() + "\"}";
+        String url = "https://rekor.sigstore.dev/api/v1/index/retrieve";
+
+        try (var client = HttpClients.createDefault()) {
+            var post = new HttpPost(url);
+            post.setHeader("Content-Type", "application/json");
+            post.setEntity(new StringEntity(payload, StandardCharsets.UTF_8));
+
+            try (var resp = client.execute(post)) {
+                String body = EntityUtils.toString(resp.getEntity(), StandardCharsets.UTF_8);
+                System.out.println("Status: " + resp.getStatusLine());
+                System.out.println("Response: " + body);
+
+                if (body == null || body.trim().equals("[]")) {
+                    JOptionPane.showMessageDialog(frame,
+                            "Hash NOT found in Rekor transparency log!",
+                            "Result",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(frame,
+                            "Hash FOUND in Rekor transparency log!",
+                            "Result",
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
-
-                String payload = "{\"hash\":\"sha256:" + userHash.trim() + "\"}";
-                String url = "https://rekor.sigstore.dev/api/v1/index/retrieve";
-
-                try (var client = HttpClients.createDefault()) {
-                    var post = new HttpPost(url);
-                    post.setHeader("Content-Type", "application/json");
-                    post.setEntity(new StringEntity(payload, StandardCharsets.UTF_8));
-
-                    try (var resp = client.execute(post)) {
-                        String body = EntityUtils.toString(resp.getEntity(), StandardCharsets.UTF_8);
-                        System.out.println("Status: " + resp.getStatusLine());
-                        System.out.println("Response: " + body);
-                    }
-                }
-            } catch (HeadlessException | IOException | ParseException ex) {
             }
+        }
+    } catch (HeadlessException | IOException | ParseException ex) {
+        JOptionPane.showMessageDialog(frame,
+                "An error occurred: " + ex.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+    }
         });
 
         //// Signing process
