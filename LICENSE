@@ -13,9 +13,3 @@ Sigstore GUI Signer Tool
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-    """;
-    
-    String aboutText = """
-    Sigstore GUI Signer Tool is a simple yet powerful application. 
-    It allows you to sign and verify artifacts using a convenient, portable 
-    GUI interface for Sigstore.
