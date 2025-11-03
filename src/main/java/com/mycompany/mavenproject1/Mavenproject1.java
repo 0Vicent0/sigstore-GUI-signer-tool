@@ -157,7 +157,13 @@ public class Mavenproject1 {
                                     "Invalid hash format (sha256)!",
                                     "Invalid Input",
                                     JOptionPane.WARNING_MESSAGE);
-                        } else {
+                        } else if (body.contains("\"code\":400")) {
+                              JOptionPane.showMessageDialog(frame,
+                                    "Invalid request!",
+                                    "Invalid Input",
+                                    JOptionPane.WARNING_MESSAGE);
+                        } 
+                        else {
                             JOptionPane.showMessageDialog(frame,
                                     "Hash FOUND in Rekor transparency log!",
                                     "Result",
